@@ -1,8 +1,27 @@
 import { Grid, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
+import Result from './Result';
 
-function Screen() {
+function Screen(props) {
 	const [calculation, setCalculation] = useState('');
+
+	const checkKeys = (term) => {
+		return term
+			.split('')
+			.map((c, i) => {
+				if (c === '*') return '•';
+				if (c === '/') return '÷';
+				return c;
+			})
+			.join('');
+	};
+
+	const finalCheck = (term) => {
+		const checkRegex = /^([•÷0-9+-])+$/;
+		console.log(checkRegex.test(term), term);
+		return checkRegex.test(term);
+	};
+
 	return (
 		<Grid
 			item
@@ -13,7 +32,17 @@ function Screen() {
 			// style={{ background: 'orange' }}
 		>
 			<Grid item xs="10">
-				<form noValidate onSubmit={(e) => {}} className="form-screen">
+				<Result currentCalculation={props.currentCalculation} />
+				<form
+					noValidate
+					onSubmit={(e) => {
+						e.preventDefault();
+						if (calculation !== '') {
+							props.calculate(calculation);
+						}
+					}}
+					className="form-screen"
+				>
 					<TextField
 						id="outlined-basic"
 						color="secondary"
@@ -25,7 +54,10 @@ function Screen() {
 						fullWidth="true"
 						value={calculation}
 						onChange={(e) => {
-							setCalculation(e.target.value);
+							let term = checkKeys(e.target.value);
+							if (finalCheck(term)) setCalculation(term);
+							if (term.length < 1) setCalculation('');
+							props.calculate(term);
 						}}
 						size="large"
 						// InputProps={{

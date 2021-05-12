@@ -20,13 +20,15 @@
 .calc-each-button-cont {
 	border: 1px solid rgb(255, 255, 255);
 }
+
 .screen-cont {
-	height: 70%;
+	height: 60%;
 	width: 100%;
 }
 .calc-cont {
-	height: 30%;
+	height: 40%;
 }
+
 @media only screen and (min-width: 640px) {
 	.screen-cont {
 		height: 45%;

@@ -1,4 +1,4 @@
-import { Grid, IconButton, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 
 function calc() {
@@ -63,7 +63,7 @@ function calc() {
 						className="calc-each-button-cont"
 					>
 						<Typography className="calc-button-text helvetica-neue-font">
-							\
+							÷
 						</Typography>
 					</Grid>
 				</Grid>
@@ -113,7 +113,7 @@ function calc() {
 						className="calc-each-button-cont"
 					>
 						<Typography className="calc-button-text helvetica-neue-font">
-							x
+							×
 						</Typography>
 					</Grid>
 				</Grid>

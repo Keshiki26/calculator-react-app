@@ -1,2 +1,0 @@
-(this["webpackJsonpcalculator-app-react"]=this["webpackJsonpcalculator-app-react"]||[]).push([[0],{19:function(t,c,a){},25:function(t,c,a){"use strict";a.r(c);a(0);var e=a(8),n=a.n(e),r=a(38),o=(a(19),a(4));var p=function(){return Object(o.jsx)(r.a,{container:!0,children:"Start"})};n.a.render(Object(o.jsx)(p,{}),document.getElementById("root"))}},[[25,1,2]]]);
-//# sourceMappingURL=main.df88ee1e.chunk.js.map
