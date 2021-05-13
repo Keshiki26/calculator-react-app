@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import reactDom from 'react-dom';
 import Calc from './Calc-comps/Calc';
 import Screen from './Calc-comps/Screen';
+import { isMobile } from 'react-device-detect';
 
 export default class componentName extends Component {
 	state = {
@@ -122,9 +123,9 @@ export default class componentName extends Component {
 			this.calculate(newTerm);
 		}
 	};
-	//makes sure input is always focused when interacting
+	//makes sure input is always focused when interacting unless on mobile
 	focus = (re) => {
-		reactDom.findDOMNode(re).focus();
+		if (!isMobile) reactDom.findDOMNode(re).focus();
 	};
 
 	render() {
