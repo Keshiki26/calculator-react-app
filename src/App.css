@@ -22,7 +22,7 @@
 }
 
 .screen-cont {
-	height: 60%;
+	height: 50%;
 	width: 100%;
 }
 .calc-cont {
@@ -37,7 +37,16 @@
 		height: 55%;
 	}
 }
-.form-screen {
-	background-color: 'green';
-	/* width: 90%; */
+
+.results {
+	border: 1px solid rgb(216, 213, 213);
+	border-radius: 5px;
+	padding: 20px;
+}
+.history-cont {
+	height: 30vh;
+	overflow: scroll;
+}
+.equation {
+	overflow: scroll;
 }

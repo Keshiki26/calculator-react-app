@@ -1,72 +1,60 @@
-import { Grid, TextField } from '@material-ui/core';
-import React, { useState } from 'react';
+import { Grid, InputAdornment, TextField } from '@material-ui/core';
+import React from 'react';
 import Result from './Result';
 
 function Screen(props) {
-	const [calculation, setCalculation] = useState('');
-
-	const checkKeys = (term) => {
-		return term
-			.split('')
-			.map((c, i) => {
-				if (c === '*') return '•';
-				if (c === '/') return '÷';
-				return c;
-			})
-			.join('');
-	};
-
-	const finalCheck = (term) => {
-		const checkRegex = /^([•÷0-9+-])+$/;
-		console.log(checkRegex.test(term), term);
-		return checkRegex.test(term);
-	};
-
+	//form for input and result
 	return (
 		<Grid
 			item
 			container
 			className="screen-cont"
 			justify="center"
-			alignItems="flex-end"
-			// style={{ background: 'orange' }}
+			alignContent="flex-end"
 		>
-			<Grid item xs="10">
-				<Result currentCalculation={props.currentCalculation} />
+			{/* Display history results */}
+			<Grid item container xs={10} className="history-cont">
+				<Result
+					currentCalculation={props.currentCalculation}
+					history={props.history}
+				/>
+			</Grid>
+
+			{/* Display current form input (for calculation)  */}
+			<Grid item xs={10} className="current-result-cont">
 				<form
 					noValidate
 					onSubmit={(e) => {
 						e.preventDefault();
-						if (calculation !== '') {
-							props.calculate(calculation);
+						if (props.term !== '') {
+							props.submit();
 						}
 					}}
 					className="form-screen"
 				>
 					<TextField
+						inputRef={(t) => {
+							if (t !== null) props.focus(t);
+						}}
 						id="outlined-basic"
 						color="secondary"
-						autoFocus="true"
+						autoFocus={true}
 						autoComplete="off"
-						required="true"
+						required={true}
 						helperText=""
 						variant="outlined"
-						fullWidth="true"
-						value={calculation}
+						fullWidth={true}
+						value={props.term}
 						onChange={(e) => {
-							let term = checkKeys(e.target.value);
-							if (finalCheck(term)) setCalculation(term);
-							if (term.length < 1) setCalculation('');
-							props.calculate(term);
+							props.changeInput(e.target.value);
 						}}
-						size="large"
-						// InputProps={{
-						// 	startAdornment: (
-						// 		<InputAdornment position="start" disablePointerEvents="true">
-						// 			<CreateIcon color="secondary" />
-						// 		</InputAdornment>
-						// 	),
-						// }}
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position="end" disablePointerEvents={true}>
+									{!isNaN(props.currentCalculation) && props.currentCalculation}
+								</InputAdornment>
+							),
+						}}
 					></TextField>
 				</form>
 			</Grid>
